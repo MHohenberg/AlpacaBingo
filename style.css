@@ -1,12 +1,14 @@
 body {
 	background-color: #333;
 	background-image: url(logo.png);
+	background-position: 15px 15px;
+	background-repeat: no-repeat;
 	color:#FFF;
 }
 
 table {
-	width:85%;
-	margin:auto;
+	width:75%;
+	margin:100px auto;
 }
 
 td {
