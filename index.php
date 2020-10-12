@@ -42,7 +42,7 @@
 	</head>
 	<body>
 
-<div class="rules">Rules: Keep open. Press the appropriate field when it happens on stream. Shout BINGO into chat when you have your bingo card filled. </div>
+<div class="rules">Rules: Keep this open in a tab in the backgroun. Click the appropriate field when it happens on stream. Shout BINGO into chat when you have your bingo card filled. </div>
 
 	<audio id="bingosound" loop= "false" volume="60">
 		<source src="bingo.wav" id="bingo" type="audio/wav">
