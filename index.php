@@ -1,16 +1,18 @@
 <?php
 
-	print "Miniden Bingo";
+	echo "Miniden Bingo";
 
-	$keywords = file_get_contents("keywords.org");
-
-	for (x = 0; x <=4; x++) {
-		print "<tr>";
-		for (y = 0; y <=4;y++) {
-			print "<td>".$keywords[x*5+y]."</td>";
+	$keywords = explode("\n",file_get_contents("keywords.org"));
+	shuffle($keywords);
+	echo "<table>";
+	for ($x = 0; $x <=4; $x++) {
+		echo "<tr>";
+		for ($y = 0; $y <=4;$y++) {
+			echo "<td style='border:1px solid orange'>".$keywords[$x*5+$y]."</td>";
 		}
-		print "</tr>"
+		echo "</tr>";
 	}
+	echo "</table>";
 
 
 ?>
