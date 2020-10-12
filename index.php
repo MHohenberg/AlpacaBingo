@@ -3,10 +3,7 @@
 	<head>
 		<title>Alpaca Bingo</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-  crossorigin="anonymous"></script>
+		<script src="jquery-3.5.1.min.js"></script>
 	<script>
 		function checkBingo() {
 
@@ -70,11 +67,9 @@
 
 
 ?>
-
-<!--
-<a href='#' onclick="var a = document.getElementById('sounds');a.play();a.stop()"> BINGO </a>
-
-//-->
+<footer>
+<a href="https://www.martinhohenberg.de/impressum.html">Impressum</a>
+</footer>
 
 	</body>
 </html>

@@ -24,3 +24,11 @@ td {
 	background-color: orange;
 	color:black;
 }
+
+footer {
+	text-align:right;	
+}
+
+footer a {
+	color:orangered;
+}
