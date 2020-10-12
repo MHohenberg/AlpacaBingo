@@ -33,7 +33,7 @@
 				bingo = true;
 				var a = document.getElementById('bingosound');
 				a.play()
-				setTimeout(function(){ a.pause(); }, 1000);
+				setTimeout(function(){ a.pause(); }, 820);
 
 			}
 
