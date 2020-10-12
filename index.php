@@ -32,8 +32,11 @@
 			{
 				bingo = true;
 				var a = document.getElementById('bingosound');
-				a.play()
-				setTimeout(function(){ a.pause(); }, 820);
+				a.play();
+				setTimeout(function(){ 
+					a.pause(); 
+					a.currentTime = 0
+				}, 820);
 
 			}
 
