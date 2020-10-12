@@ -3,6 +3,14 @@
 A small, stupid Bingo card, intended for use in online streams, particularly
 those involving large herds of /vicugna pacos/.
 
-Install it on a webserver, and get it to run. 
+** Installation
 
-Bingo card words are in the keywords.org file, you may want to roll your own. 
+You need a webserver able to run PHP scripts. 
+
+Bingo card words are in the keywords.org file, one word per line. You may want to roll your own, if you do, please do *not* commit it.
+
+** Plans for the future
+
+- A game master mode intended to allow for prizes to be won
+- individually accessible bingo cards 
+- a way to distinguish between high-frequency, middle-frequency and low-frequency keywords, to make this fair. 
