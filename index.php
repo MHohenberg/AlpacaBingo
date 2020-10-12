@@ -1,15 +1,15 @@
 <?php
 
-	print "Miniden Bingo";
+	echo "Miniden Bingo";
 
 	$keywords = file_get_contents("keywords.org");
 
 	for (x = 0; x <=4; x++) {
-		print "<tr>";
+		echo "<tr>";
 		for (y = 0; y <=4;y++) {
-			print "<td>".$keywords[x*5+y]."</td>";
+			echo "<td>".$keywords[x*5+y]."</td>";
 		}
-		print "</tr>"
+		echo "</tr>"
 	}
 
 
