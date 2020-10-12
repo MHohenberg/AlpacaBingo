@@ -8,13 +8,19 @@ body {
 
 table {
 	width:75%;
-	margin:100px auto;
+	margin:30px auto;
 }
 
 td {
 	width:20%;
 	height:150px;
 	text-align:center;
+}
+
+div {
+	width:95%;
+	text-align:right;
+	color:orange;
 }
 
 .d {

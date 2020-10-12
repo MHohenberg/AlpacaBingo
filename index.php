@@ -42,6 +42,8 @@
 	</head>
 	<body>
 
+<div class="rules">Rules: Keep open. Press the appropriate field when it happens on stream. Shout BINGO into chat when you have your bingo card filled. </div>
+
 	<audio id="bingosound" loop= "false" volume="60">
 		<source src="bingo.wav" id="bingo" type="audio/wav">
 	</audio>
@@ -56,6 +58,7 @@
 			if ($keywords[$x*5+$y] == "") {
 				echo "<td class='e' id='cell_".$x."_".$y."'> BONUS CELL </td>";			
 			} else {
+
 				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();\" class='bingocell d' id='cell_".$x."_".$y."'>".$keywords[$x*5+$y]."</td>\n";
 			}
 		}
