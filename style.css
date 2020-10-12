@@ -13,3 +13,14 @@ td {
 	height:150px;
 	text-align:center;
 }
+
+.d {
+	border:1px solid orange;
+	background-color: transparent;
+	color:white;
+}
+
+.e {
+	background-color: orange;
+	color:black;
+}
