@@ -47,8 +47,6 @@
 	</audio>
 <?php
 
-	echo "<h1>Alpaca Bingo</h1>";
-
 	$keywords = explode("\n",file_get_contents("keywords.org"));
 	shuffle($keywords);
 	echo "<table>";
