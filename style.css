@@ -1,0 +1,15 @@
+body {
+	background-color: #333;
+	color:#FFF;
+}
+
+table {
+	width:85%;
+	margin:auto;
+}
+
+td {
+	width:20%;
+	height:150px;
+	text-align:center;
+}
