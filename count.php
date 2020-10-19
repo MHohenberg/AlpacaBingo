@@ -6,7 +6,7 @@ function isValidMd5($md5 ='')
 }
 
 
-if ($_GET['id'] && isValidMd5($_GET['id']) {
+if ($_GET['id'] && isValidMd5($_GET['id'])) {
 
 	$filename = "counters/".$_GET['id'].".counter";
 
@@ -18,5 +18,4 @@ if ($_GET['id'] && isValidMd5($_GET['id']) {
 	}
 } else {
 	header("400 Bad Request");
-
-?>
+}

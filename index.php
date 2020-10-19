@@ -67,7 +67,7 @@
 				echo "<td class='e' id='cell_".$x."_".$y."'> BONUS CELL </td>";			
 			} else {
 
-				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();countTerm('".$keywords[$x*5+$y]."')\" class='bingocell d' id='cell_".$x."_".$y."'>".$keywords[$x*5+$y]."</td>\n";
+				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();countTerm($(this).html())\" class='bingocell d' id='cell_".$x."_".$y."'>".$keywords[$x*5+$y]."</td>\n";
 			}
 		}
 		echo "</tr>\n";
