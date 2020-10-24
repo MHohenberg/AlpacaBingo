@@ -4,7 +4,8 @@
 		<title>Alpaca Bingo</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="jquery-3.5.1.min.js"></script>
-	<script>
+		<script src="md5.js"></script>
+		<script>
 		function checkBingo() {
 
 			    // horizontally
@@ -36,6 +37,15 @@
 			}
 
 		}	
+
+		function countTerm(term) {
+			var md5Term = md5(term);
+			fetch('https://bingo.ty812.net/count.php?id='+md5Term)
+				.catch(err => alert('Failed'));
+
+		} 
+
+
 	</script>
 	</head>
 	<body>
@@ -57,7 +67,7 @@
 				echo "<td class='e' id='cell_".$x."_".$y."'> BONUS CELL </td>";			
 			} else {
 
-				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();\" class='bingocell d' id='cell_".$x."_".$y."'>".$keywords[$x*5+$y]."</td>\n";
+				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();countTerm($(this).html())\" class='bingocell d' id='cell_".$x."_".$y."'>".$keywords[$x*5+$y]."</td>\n";
 			}
 		}
 		echo "</tr>\n";
