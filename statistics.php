@@ -12,5 +12,7 @@ foreach ($keywords as $keyword) {
 		$count = file_get_contents($filename);
 	}
 
-	echo $count."   $kwMD5    ".$keyword."\n";
+	if ($count != "-") {
+		echo $count."   $kwMD5    ".$keyword."\n";
+	}
 }
