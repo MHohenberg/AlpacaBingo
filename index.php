@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 
 function guidv4()
 {
@@ -12,8 +13,29 @@ function guidv4()
 		    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
-	$sessionId = guidv4();
-?>>
+if ($_SESSION['bingoCardId'] == "") {
+	$_SESSION['bingoCardId'] = guidv4();
+
+}
+
+// Session Cleanup
+$files = glob("sessions/*");
+foreach($files as $file) {
+	$filemtime=filemtime ($file);
+	if (time()-$filemtime >= 20*60*60)
+	{
+		unlink($file);
+
+		$honestyfiles = glob("counters/".str_replace("sessions/","",$file)."*");
+		foreach ($honestyfiles as $hfile) {
+			unlink($hfile);
+		}
+	}
+	
+}
+
+
+?>
 <html>
 	<head>
 		<title>Alpaca Bingo</title>
@@ -54,8 +76,7 @@ function guidv4()
 		}	
 
 		function countTerm(term) {
-			var md5Term = md5(term);
-			fetch('https://bingo.ty812.net/count.php?id='+md5Term+'&session=<?php echo $sessionId?>')
+			fetch('https://bingo.ty812.net/count.php?id='+term+'&session=<?php echo $_SESSION['bingoCardId']?>')
 				.catch(err => alert('Failed'));
 
 		} 
@@ -72,18 +93,37 @@ function guidv4()
 	</audio>
 <?php
 
+	$sessionFile = "sessions/".$_SESSION['bingoCardId'];
 
-	$keywords = explode("\n",file_get_contents("keywords.org"));
-	shuffle($keywords);
+	if (!file_exists($sessionFile)) {
+		$keywords = array_slice(explode("\n",file_get_contents("keywords.org")),0,25);
+		shuffle($keywords);
+		file_put_contents($sessionFile, implode("\n",$keywords));
+	} else {
+		$keywords = explode("\n",file_get_contents($sessionFile));
+	
+	}
+
 	echo "<table>";
 	for ($x = 0; $x <=4; $x++) {
 		echo "<tr>\n";
 		for ($y = 0; $y <=4;$y++) {
-			if ($keywords[$x*5+$y] == "") {
+
+			$cellKeyword = $keywords[$x*5+$y];
+
+			if ($cellKeyword == "") {
 				echo "<td class='e' id='cell_".$x."_".$y."'> BONUS CELL </td>";			
 			} else {
 
-				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();countTerm($(this).html())\" class='bingocell d' id='cell_".$x."_".$y."'>".$keywords[$x*5+$y]."</td>\n";
+				$class = "d";
+				$honestyFileName = "counters/".$_SESSION['bingoCardId'].".".md5($cellKeyword).".honesty";
+
+				$honesty .= $honestyFileName."\n";
+				if (file_exists($honestyFileName)) {
+					$class = "e";
+				}
+
+				echo "<td onclick=\"$(this).toggleClass('e').toggleClass('d');checkBingo();countTerm('".md5($cellKeyword)."')\" class='bingocell $class' id='cell_".$x."_".$y."'>".$cellKeyword."</td>\n";
 			}
 		}
 		echo "</tr>\n";
@@ -92,7 +132,9 @@ function guidv4()
 
 
 ?>
+	<!-- <?php echo $honesty ?> //-->
 <footer>
+Bingo Card Code: <?php echo $_SESSION['bingoCardId'];  ?> - 
 <a href="https://www.martinhohenberg.de/impressum.html">Impressum</a>
 </footer>
 
