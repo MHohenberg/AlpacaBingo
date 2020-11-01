@@ -37,5 +37,3 @@ foreach ($lines as $line) {
 	echo "<tr style='background-color:$backgroundcolor'>$line</tr>";
 }
 echo "</table>";
-
-

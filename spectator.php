@@ -15,16 +15,13 @@ foreach($files as $file) {
 			unlink($hfile);
 		}
 	}
-	
 }
-
 
 ?>
 <html>
 	<head>
 		<title>Alpaca Bingo SPECTATOR <?php $id?></title>
-		<link rel="stylesheet" type="text/css" href="spectator.css">
-		<script src="jquery-3.5.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/spectator.css">
 	</head>
 	<body>
 

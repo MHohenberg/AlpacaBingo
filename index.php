@@ -28,10 +28,10 @@ foreach($files as $file) {
 <html>
 	<head>
 		<title>Alpaca Bingo</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="jquery-3.5.1.min.js"></script>
-		<script src="md5.js"></script>
-		<script src="jquery.color-2.1.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/jquery-3.5.1.min.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jquery.color-2.1.2.min.js"></script>
 		<script>
 
 		var notLocked = true;
