@@ -31,7 +31,22 @@ foreach($files as $file) {
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script src="jquery-3.5.1.min.js"></script>
 		<script src="md5.js"></script>
+		<script src="jquery.color-2.1.2.min.js"></script>
 		<script>
+
+		var notLocked = true;
+		$.fn.animateHighlight = function(highlightColor, duration) {
+			var highlightBg = highlightColor || "transparent";
+			var animateMs = duration || 1500;
+			var originalBg = this.css("background-color");
+			if (notLocked) {
+				notLocked = false;
+				this.stop().css("background-color", highlightBg)
+					.animate({backgroundColor: originalBg}, animateMs);
+				setTimeout( function() { notLocked = true; }, animateMs);
+			}
+		};
+
 		function checkBingo() {
 
 			    // horizontally
@@ -59,8 +74,10 @@ foreach($files as $file) {
 					a.pause(); 
 					a.currentTime = 0;
 					alert('BINGO! Post the spectator link (bottom right) to the chat for verification');
-				}, 820);
+	
+					$("#spectatorLink").animateHighlight("#ffff00", 1000);
 
+				}, 820);
 			}
 
 		}	
@@ -120,7 +137,7 @@ foreach($files as $file) {
 
 ?>
 <footer>
-Bingo Card Id: <?php echo $_SESSION['bingoCardId']; ?> [<a href="https://bingo.ty812.net/spectator.php?bingoCardId=<?php echo $_SESSION['bingoCardId'];?>" target="_new">Spectator link</a>] - 
+Bingo Card Id: <?php echo $_SESSION['bingoCardId']; ?> [<a href="https://bingo.ty812.net/spectator.php?bingoCardId=<?php echo $_SESSION['bingoCardId'];?>" target="_new" id="spectatorLink">Spectator link</a>] - 
 <a href="https://www.martinhohenberg.de/impressum.html">Impressum</a>
 </footer>
 
