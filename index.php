@@ -62,6 +62,8 @@ foreach($files as $file) {
 					a.currentTime = 0;
 				}, 820);
 
+				alert('BINGO! Post the spectator link (bottom right) to the chat for verification');
+
 			}
 
 		}	
@@ -121,7 +123,7 @@ foreach($files as $file) {
 
 ?>
 <footer>
-Bingo Card Id: <?php echo $_SESSION['bingoCardId'];  ?> - 
+Bingo Card Id: <?php echo $_SESSION['bingoCardId']; ?> [<a href="https://bingo.ty812.net/spectator.php?bingoCardId=<?php echo $_SESSION['bingoCardId'];?>" target="_new">Spectator link</a>] - 
 <a href="https://www.martinhohenberg.de/impressum.html">Impressum</a>
 </footer>
 
