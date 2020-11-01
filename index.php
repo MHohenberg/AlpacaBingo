@@ -22,9 +22,7 @@ foreach($files as $file) {
 			unlink($hfile);
 		}
 	}
-	
 }
-
 
 ?>
 <html>
@@ -60,9 +58,8 @@ foreach($files as $file) {
 				setTimeout(function(){ 
 					a.pause(); 
 					a.currentTime = 0;
+					alert('BINGO! Post the spectator link (bottom right) to the chat for verification');
 				}, 820);
-
-				alert('BINGO! Post the spectator link (bottom right) to the chat for verification');
 
 			}
 
