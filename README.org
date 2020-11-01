@@ -9,8 +9,11 @@ You need a webserver able to run PHP scripts.
 
 Bingo card words are in the keywords.org file, one word per line. You may want to roll your own, if you do, please do *not* commit it.
 
+** Features
+- Bingo cards are created based on satistics on former games, to make large lists more fair
+- Spectator mode: Each card has an id, and can be watched by other players to verify bingo has tken place.
+
 ** Plans for the future
 
 - A game master mode intended to allow for prizes to be won
-- individually accessible bingo cards 
-- a way to distinguish between high-frequency, middle-frequency and low-frequency keywords, to make this fair. 
+- phantombot integration
