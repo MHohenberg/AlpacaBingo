@@ -2,16 +2,7 @@
 <?php
 session_start();
 
-function guidv4()
-{
-	    if (function_exists('com_create_guid') === true)
-		            return trim(com_create_guid(), '{}');
-
-	        $data = openssl_random_pseudo_bytes(16);
-	        $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
-		    $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
-		    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
-}
+include_once("functions.php");
 
 if ($_SESSION['bingoCardId'] == "") {
 	$_SESSION['bingoCardId'] = guidv4();
@@ -81,7 +72,6 @@ foreach($files as $file) {
 
 		} 
 
-
 	</script>
 	</head>
 	<body>
@@ -96,12 +86,10 @@ foreach($files as $file) {
 	$sessionFile = "sessions/".$_SESSION['bingoCardId'];
 
 	if (!file_exists($sessionFile)) {
-		$keywords = array_slice(explode("\n",file_get_contents("keywords.org")),0,25);
-		shuffle($keywords);
+		$keywords = getTiers();
 		file_put_contents($sessionFile, implode("\n",$keywords));
 	} else {
 		$keywords = explode("\n",file_get_contents($sessionFile));
-	
 	}
 
 	echo "<table>";
@@ -132,9 +120,8 @@ foreach($files as $file) {
 
 
 ?>
-	<!-- <?php echo $honesty ?> //-->
 <footer>
-Bingo Card Code: <?php echo $_SESSION['bingoCardId'];  ?> - 
+Bingo Card Id: <?php echo $_SESSION['bingoCardId'];  ?> - 
 <a href="https://www.martinhohenberg.de/impressum.html">Impressum</a>
 </footer>
 
