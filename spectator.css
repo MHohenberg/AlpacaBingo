@@ -1,0 +1,44 @@
+body {
+	background-color: #333;
+	background-image: url(logo.png);
+	background-position: 15px 15px;
+	background-repeat: no-repeat;
+	color:#FFF;
+}
+
+table {
+	width:75%;
+	margin:30px auto;
+}
+
+td {
+	width:20%;
+	height:150px;
+	text-align:center;
+}
+
+div {
+	width:95%;
+	text-align:right;
+	color:orange;
+}
+
+.d {
+	border:1px solid orange;
+	background-color: transparent;
+	color:white;
+}
+
+.e {
+	background-color: darkgreen;
+	color:black;
+}
+
+footer {
+	text-align:right;	
+}
+
+footer a {
+	color:orangered;
+}
+
