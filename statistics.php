@@ -8,15 +8,13 @@ foreach ($keywords as $keyword) {
 	$kwMD5 = md5($keyword);
 	$filename = "counters/$kwMD5.counter";
 
-	$count = "-";
+	$count = 0;
 
 	if (file_exists($filename)) {
 		$count = file_get_contents($filename);
 	}
 
-	if ($count != "-") {
-		array_push($lines, "<td>".$count."</td><td>$kwMD5</td><td>".$keyword."</td>");
-	}
+	array_push($lines, "<td>".$count."</td><td>$kwMD5</td><td>".$keyword."</td>");
 }
 
 rsort($lines);
