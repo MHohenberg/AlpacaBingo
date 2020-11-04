@@ -6,7 +6,7 @@ include_once("functions.php");
 
 if ($_SESSION['bingoCardId'] == "") {
 	$_SESSION['bingoCardId'] = guidv4();
-
+	file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | New Bingo Card created\n", FILE_APPEND);
 }
 
 // Session Cleanup
@@ -17,9 +17,11 @@ foreach($files as $file) {
 	{
 		unlink($file);
 
+		file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | TIMEOUT File $file deleted\n", FILE_APPEND);
 		$honestyfiles = glob("counters/".str_replace("sessions/","",$file)."*");
 		foreach ($honestyfiles as $hfile) {
 			unlink($hfile);
+			file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | TIMEOUT Honestyfile $file deleted \n", FILE_APPEND);
 		}
 	}
 }
