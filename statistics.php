@@ -19,15 +19,20 @@ foreach ($keywords as $keyword) {
 
 	$count = 0;
 
+	$lastClaimed = "n/a";
+
 	if (file_exists($filename)) {
 		$count = file_get_contents($filename);
+		if ($count > 0) {
+			$lastClaimed = date("yy-m-d h:i:s", filemtime($filename));
+		}
 	}
 
 	if ($count < 10) {
 		$count = "0".$count;
 	}
 
-	array_push($terms, "<td>".$count."</td><td>".$keyword."</td>");
+	array_push($terms, "<td>".$count."</td><td>".$keyword."</td><td>$lastClaimed</td>");
 }
 
 rsort($terms);
@@ -35,7 +40,7 @@ $termsPerTier = count($terms)/3;
 
 echo "<h1 id='terms'>Bingo Terms</h1>";
 echo "<table style='width:80%;margin:auto'>";
-echo "<tr><th>Times claimed</th><th>Bingo card</th></tr>";
+echo "<tr><th>Times claimed</th><th>Bingo card</th><th>Last claimed</th></tr>";
 foreach ($terms as $term) {
 	$i++;
 	if ($i < $termsPerTier) {
