@@ -9,22 +9,7 @@ if ($_SESSION['bingoCardId'] == "") {
 	file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | New Bingo Card created\n", FILE_APPEND);
 }
 
-// Session Cleanup
-$files = glob("sessions/*");
-foreach($files as $file) {
-	$filemtime=filemtime ($file);
-	if (time()-$filemtime >= 20*60*60)
-	{
-		unlink($file);
-
-		file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | TIMEOUT File $file deleted\n", FILE_APPEND);
-		$honestyfiles = glob("counters/".str_replace("sessions/","",$file)."*");
-		foreach ($honestyfiles as $hfile) {
-			unlink($hfile);
-			file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | TIMEOUT Honestyfile $file deleted \n", FILE_APPEND);
-		}
-	}
-}
+cleanup();
 
 ?>
 <html>

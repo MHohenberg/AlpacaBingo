@@ -2,21 +2,7 @@
 <?php
 include_once("functions.php");
 
-// Session Cleanup
-$files = glob("sessions/*");
-foreach($files as $file) {
-	$filemtime=filemtime ($file);
-	if (time()-$filemtime >= 20*60*60)
-	{
-		unlink($file);
-
-		$sessionclickfiles = glob("sessionclick/".str_replace("sessions/","",$file)."*");
-		foreach ($sessionclickfiles as $hfile) {
-			unlink($hfile);
-		}
-	}
-}
-
+cleanup();
 ?>
 <html>
 	<head>
@@ -27,14 +13,15 @@ foreach($files as $file) {
 
 <?php
 
-	$sessionFile = "sessions/".$_GET['bingoCardId'];
+$sessionFile = "sessions/".$_GET['bingoCardId'];
 
-	if (!file_exists($sessionFile)) {
-		$keywords = getTiers();
-		file_put_contents($sessionFile, implode("\n",$keywords));
+if (!file_exists($sessionFile)) {
+
+	echo "<div id='error'>This bingo card does not seem to exist. Chances are that the session has been removed for inactivity after a few hours.</div>";
+
 	} else {
 		$keywords = explode("\n",file_get_contents($sessionFile));
-	}
+	
 
 	echo "<table>";
 	for ($x = 0; $x <=4; $x++) {
@@ -61,7 +48,7 @@ foreach($files as $file) {
 		echo "</tr>\n";
 	}
 	echo "</table>";
-
+	}
 
 ?>
 <footer>

@@ -1,5 +1,25 @@
 <?php
 
+function cleanup($maxAge = 7200) {
+
+	// Session Cleanup
+	$files = glob("sessions/*");
+	foreach($files as $file) {
+		$filemtime=filemtime ($file);
+		if (time()-$filemtime >= $maxAge)
+		{
+			unlink($file);
+
+			file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | TIMEOUT File $file deleted\n", FILE_APPEND);
+			$honestyfiles = glob("counters/".str_replace("sessions/","",$file)."*");
+			foreach ($honestyfiles as $hfile) {
+				unlink($hfile);
+				file_put_contents("logfile.txt", $_SESSION['bingoCardId']." | ".time()." | TIMEOUT Honestyfile $file deleted \n", FILE_APPEND);
+			}
+		}
+	}                                                                                                           
+}
+
 function guidv4()
 {
 	if (function_exists('com_create_guid') === true)
@@ -47,4 +67,4 @@ function getTier($tier, $number=15) {
 	$tierkw = array_splice($tierkw, 0, $number);
 	
 	return $tierkw;
-	}
+}
