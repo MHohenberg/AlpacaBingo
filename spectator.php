@@ -10,6 +10,7 @@ cleanup();
 		<link rel="stylesheet" type="text/css" href="css/spectator.css">
 	</head>
 	<body>
+<div id="logo">&nbsp;</div>
 
 <?php
 

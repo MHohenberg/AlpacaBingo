@@ -78,7 +78,9 @@ cleanup();
 	</head>
 	<body>
 
-<div class="rules">Rules: Keep this open in a tab in the background. Click the appropriate field when it happens on stream. Shout BINGO into chat when you have your bingo card filled. </div>
+<div id="rules">Rules: Keep this open in a tab in the background. Click the appropriate field when it happens on stream. Shout BINGO into chat when you have your bingo card filled. </div>
+
+<div id="logo">&nbsp;</div>
 
 	<audio id="bingosound" loop= "false" volume="60">
 		<source src="bingo.wav" id="bingo" type="audio/wav">
