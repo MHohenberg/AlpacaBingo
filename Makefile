@@ -7,3 +7,7 @@ release:
 	git add keywords.miniden.gpg
 	mkdir -p counters
 	chmod a+rw counters
+
+reset:
+	rm -f sessions/*
+	rm -f sessionclick/*

@@ -85,8 +85,7 @@ foreach($files as $file) {
 		}	
 
 		function countTerm(term) {
-			fetch('https://bingo.ty812.net/count.php?id='+term+'&session=<?php echo $_SESSION['bingoCardId']?>')
-				.catch(err => alert('Failed'));
+			fetch('https://bingo.ty812.net/count.php?id='+term+'&session=<?php echo $_SESSION['bingoCardId']?>').catch(err => alert('term counting failed'));
 
 		} 
 

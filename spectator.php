@@ -10,8 +10,8 @@ foreach($files as $file) {
 	{
 		unlink($file);
 
-		$honestyfiles = glob("counters/".str_replace("sessions/","",$file)."*");
-		foreach ($honestyfiles as $hfile) {
+		$sessionclickfiles = glob("sessionclick/".str_replace("sessions/","",$file)."*");
+		foreach ($sessionclickfiles as $hfile) {
 			unlink($hfile);
 		}
 	}
@@ -48,10 +48,10 @@ foreach($files as $file) {
 			} else {
 
 				$class = "d";
-				$honestyFileName = "counters/".$_GET['bingoCardId'].".".md5($cellKeyword).".honesty";
+				$sessionclickFileName = "sessionclick/".$_GET['bingoCardId'].".".md5($cellKeyword).".sessionclick";
 
-				$honesty .= $honestyFileName."\n";
-				if (file_exists($honestyFileName)) {
+				$sessionclick .= $sessionclickFileName."\n";
+				if (file_exists($sessionclickFileName)) {
 					$class = "e";
 				}
 
