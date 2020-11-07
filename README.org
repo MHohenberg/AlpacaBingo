@@ -1,17 +1,18 @@
 * Alpaca Bingo
 
-A small, stupid Bingo card, intended for use in online streams, particularly
+A small, stupid bingo card game, intended for use in online streams, particularly
 those involving large herds of /vicugna pacos/.
 
 ** Installation
 
 You need a webserver able to run PHP scripts. 
 
-Bingo card words are in the keywords.org file, one word per line. You may want to roll your own, if you do, please do *not* commit it.
+Bingo card terms are saved in the keywords.org file, one word per line. You may want to roll your own, if you do, please do *not* commit it.
 
 ** Features
-- Bingo cards are created based on satistics on former games, to make large lists more fair
-- Spectator mode: Each card has an id, and can be watched by other players to verify bingo has tken place.
+- Bingo cards are created based on statistics on former games, to make large lists more fair
+- Spectator mode: Each card has an uuid, and can be watched by other players to verify bingo has tken place.
+- Statistics: See which tiers the terms are in (higher tiers get used in card creation more often) and which never are used. Also see the number of active sessions.
 
 ** Plans for the future
 
