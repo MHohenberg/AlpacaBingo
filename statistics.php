@@ -56,8 +56,58 @@ function sortTable(n) {
 <header>
 <a href='#terms'>Bingo Terms</a> 
 <a href='#sessions'>Sessions</a>
+<a href='#newSuggestions'>New Suggestions</a>
 </header>
+
 <?php
+
+$sessionsNum = 0;
+$filledCards = 0;
+$bestFilled = 0;
+$files = glob("sessions/*");
+foreach($files as $file) {
+	$sessionId = str_replace("sessions/","",$file);
+	$linklist .= "<li><a href='https://bingo.ty812.net/spectator.php?bingoCardId=$sessionId' target=_new>$sessionId</a></li>";
+	$sessionsNum++;
+	$sessionCompletion = 0;
+	$sessionclickFiles = glob("sessionclick/".$sessionId."*");
+	foreach ($sessionclickFiles as $hf) {
+		$filledCards++;
+		$sessionCompletion++;
+	}
+	if ($bestFilled < $sessionCompletion) {
+		$bestFilled = $sessionCompletion;
+	}
+}
+
+$sessionCompletion = $filledCards." (".round($filledCards/$sessionsNum,2)." per session // best filled: ".$bestFilled.")";
+
+
+echo "<h1 id='session'>Sessions</h1>";
+
+echo "<table><tr><td>";
+
+echo "<table>";
+
+echo "<tr><th>Currently active sessions/players</th><td>$sessionsNum</td></tr>";
+echo "<tr><th>Search Terms per session</th><td>$sessionCompletion</td></tr>";
+
+echo "</table>";
+echo "</td><td>";
+
+echo "<ul>$linklist</ul>"; 
+
+echo "</td></tr></table>";
+
+
+
+echo "<h1 id='newSuggestions'>New Suggestions</h1>";
+echo "<pre>";
+echo file_get_contents("newSuggestions.org");
+echo "</pre>";
+
+
+
 
 $keywords = explode("\n",file_get_contents("keywords.org"));
 
@@ -74,7 +124,7 @@ foreach ($keywords as $keyword) {
 	if (file_exists($filename)) {
 		$count = file_get_contents($filename);
 		if ($count > 0) {
-			$lastClaimed = date("yy-m-d h:i:s", filemtime($filename));
+			$lastClaimed = date("yy-m-d H:i:s", filemtime($filename));
 		}
 	}
 
@@ -102,34 +152,6 @@ foreach ($terms as $term) {
 	}
 	echo "<tr style='background-color:$backgroundcolor'>$term</tr>";
 }
-
-echo "</table>";
-////////////////////////////
-
-$sessionsNum = 0;
-$filledCards = 0;
-$bestFilled = 0;
-$files = glob("sessions/*");
-foreach($files as $file) {
-	$sessionsNum++;
-	$sessionCompletion = 0;
-	$sessionclickFiles = glob("sessionclick/".str_replace("sessions/","",$file)."*");
-	foreach ($sessionclickFiles as $hf) {
-		$filledCards++;
-		$sessionCompletion++;
-	}
-	if ($bestFilled < $sessionCompletion) {
-		$bestFilled = $sessionCompletion;
-	}
-}
-
-$sessionCompletion = $filledCards." (".round($filledCards/$sessionsNum,2)." per session // best filled: ".$bestFilled.")";
-
-echo "<h1 id='session'>Sessions</h1>";
-echo "<table>";
-
-echo "<tr><th>Currently active sessions/players</th><td>$sessionsNum</td></tr>";
-echo "<tr><th>Search Terms per session</th><td>$sessionCompletion</td></tr>";
 
 echo "</table>";
 

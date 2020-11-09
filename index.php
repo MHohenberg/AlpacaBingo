@@ -34,6 +34,18 @@ cleanup();
 			}
 		};
 
+
+		function suggestTerm() {
+			var term = $('#term').val();
+			fetch ('https://bingo.ty812.net/suggestion.php?term='+term)
+				.catch(err => alert('Something went wrong in that suggestion. Contact ty812 in chat'))
+				.then(data => {
+					alert('Thanks for your suggestion. It will be reviewed and may be added. Feel free to suggest more');
+					$('#term').val('');
+				});
+		}
+
+
 		function checkBingo() {
 
 			    // horizontally
@@ -108,7 +120,7 @@ cleanup();
 			} else {
 
 				$class = "d";
-				$honestyFileName = "counters/".$_SESSION['bingoCardId'].".".md5($cellKeyword).".honesty";
+				$honestyFileName = "sessionclick/".$_SESSION['bingoCardId'].".".md5($cellKeyword).".sessionclick";
 
 				$honesty .= $honestyFileName."\n";
 				if (file_exists($honestyFileName)) {
@@ -125,6 +137,8 @@ cleanup();
 
 ?>
 <footer>
+Suggest a term: <input type='text' name='term' id='term'><button onclick='suggestTerm()'>Send</button>
+-
 Bingo Card Id: <?php echo $_SESSION['bingoCardId']; ?> [<a href="https://bingo.ty812.net/spectator.php?bingoCardId=<?php echo $_SESSION['bingoCardId'];?>" target="_new" id="spectatorLink">Spectator link</a>] - 
 <a href="https://www.martinhohenberg.de/impressum.html">Impressum</a>
 </footer>
